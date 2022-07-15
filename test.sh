@@ -36,3 +36,5 @@ if [ $? -eq 0 ]; then
 else
     echo "Expected output was not found..."
 fi
+
+docker volume rm threshold_model-output-$VOLUME_SUFFIX

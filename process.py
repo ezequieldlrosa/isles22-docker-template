@@ -3,14 +3,13 @@ import numpy as np
 import json
 import os
 from pathlib import Path
-
 DEFAULT_INPUT_PATH = Path("/input")
 DEFAULT_ALGORITHM_OUTPUT_IMAGES_PATH = Path("/output/images/")
 DEFAULT_ALGORITHM_OUTPUT_FILE_PATH = Path("/output/results.json")
 
 
-class Threshold_model():
-
+# todo change with your team-name
+class ThresholdModel():
     def __init__(self,
                  input_path: Path = DEFAULT_INPUT_PATH,
                  output_path: Path = DEFAULT_ALGORITHM_OUTPUT_IMAGES_PATH):
@@ -86,7 +85,10 @@ class Threshold_model():
         # Write segmentation file to json.
         if output_image_path.exists():
             json_result = {"outputs": [dict(type="Image", slug="stroke-lesion-segmentation",
-                                                 filename=str(output_image_path.name))]}
+                                                 filename=str(output_image_path.name))],
+                           "inputs": [dict(type="Image", slug="dwi-brain-mri",
+                                           filename=input_filename)]}
+
             self._case_results.append(json_result)
             self.save()
 
@@ -137,4 +139,5 @@ class Threshold_model():
 
 
 if __name__ == "__main__":
-    Threshold_model().process()
+    # todo change with your team-name
+    ThresholdModel().process()
